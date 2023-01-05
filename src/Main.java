@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
         Scanner scanner = new Scanner(System.in);
 
         String[] products = {"Молоко", "Хлеб", "Гречка"};
@@ -15,12 +15,11 @@ public class Main {
             System.out.println(products[i] + " " + prices[i] + " руб/шт");
         }
 
-        Basket basket1 = Basket.loadFromTxtFile(new File("basket.txt"));
+        Basket basket1 = Basket.loadFromBinFile(new File("basket.bin"));
 
         Basket basket = new Basket(prices, products);
 
-        File textFile = new File("basket.txt");
-
+        File file = new File("basket.bin");
 
         while (true) {
             System.out.println("Выберите товар и количество через пробел или введите `end`");
@@ -37,7 +36,7 @@ public class Main {
             productCount = Integer.parseInt(parts[1]);
             basket.addToCart(productNumber, productCount);
 
-            basket.saveTxt(textFile);
+            basket.saveBin(file);
 
         }
 
