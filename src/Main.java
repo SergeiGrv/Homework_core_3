@@ -17,9 +17,11 @@ public class Main {
 
         File file = new File("basket.bin");
 
-        Basket basket1 = Basket.loadFromBinFile(new File("basket.bin"));
-
         Basket basket = new Basket(prices, products);
+
+        if (file.exists()) {
+            basket = Basket.loadFromBinFile(new File("basket.bin"));
+        }
 
         while (true) {
             System.out.println("Выберите товар и количество через пробел или введите `end`");

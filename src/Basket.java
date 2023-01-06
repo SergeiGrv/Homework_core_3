@@ -1,6 +1,6 @@
 import java.io.*;
 
-public class Basket implements Serializable{
+public class Basket implements Serializable {
 
     protected int[] prices;
 
@@ -40,15 +40,15 @@ public class Basket implements Serializable{
         System.out.println("Итого: " + sumProducts + " руб");
     }
 
-    protected void saveBin(File file) throws IOException{
-        try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file))){
+    protected void saveBin(File file) throws IOException {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file))) {
             out.writeObject(this);
         }
     }
 
-    public static Basket loadFromBinFile(File file) throws IOException, ClassNotFoundException{
-       try( ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
-           return (Basket) in.readObject();
+    public static Basket loadFromBinFile(File file) throws IOException, ClassNotFoundException {
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
+            return (Basket) in.readObject();
         }
     }
 
