@@ -15,12 +15,13 @@ public class Main {
             System.out.println(products[i] + " " + prices[i] + " руб/шт");
         }
 
-        Basket basket1 = Basket.loadFromTxtFile(new File("basket.txt"));
+        File textFile = new File("basket.txt");
 
         Basket basket = new Basket(prices, products);
 
-        File textFile = new File("basket.txt");
-
+        if (textFile.exists()) {
+            basket = Basket.loadFromTxtFile(new File("basket.txt"));
+        }
 
         while (true) {
             System.out.println("Выберите товар и количество через пробел или введите `end`");
