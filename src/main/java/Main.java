@@ -19,6 +19,8 @@ public class Main {
 
         Basket basket = new Basket(prices, products);
 
+        ClientLog clientLog = new ClientLog();
+
         if (textFile.exists()) {
             basket = Basket.loadFromTxtFile(new File("basket.txt"));
         }
@@ -39,6 +41,7 @@ public class Main {
             basket.addToCart(productNumber, productCount);
 
             basket.saveTxt(textFile);
+            clientLog.exportAsCSV(textFile);
 
         }
 

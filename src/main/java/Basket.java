@@ -1,3 +1,5 @@
+import com.google.gson.Gson;
+
 import java.io.*;
 
 public class Basket {
@@ -21,11 +23,14 @@ public class Basket {
     protected Basket() {
     }
 
+    ClientLog clientLog = new ClientLog();
+
     protected void addToCart(int productNum, int amount) {
         quantity[productNum] = amount;
         int currentPrice = prices[productNum] * quantity[productNum];
         totalPrice[productNum] = currentPrice;
         sumProducts = sumProducts + currentPrice;
+        clientLog.log(productNum,amount);
         System.out.println("Вы добавили " + goods[productNum] + " в кол-ве " + amount + " штук(и). Итоговая цена: " + totalPrice[productNum]);
     }
 
@@ -46,6 +51,22 @@ public class Basket {
             for (int i = 0; i < goods.length; i++) {
                 out.println(goods[i] + "\t" + prices[i] + "\t" + quantity[i]);
             }
+        }
+    }
+
+    public void saveJson(File file) throws IOException{
+        try (PrintWriter out = new PrintWriter(file);){
+            Gson gson = new Gson();
+            String json = gson.toJson(this);
+            out.println(json);
+        }
+    }
+
+    public static Basket loadFromJson(File file) throws IOException{
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file));){
+            Gson gson = new Gson();
+            String json = bufferedReader.readLine();
+            return gson.fromJson(json, Basket.class);
         }
     }
 
