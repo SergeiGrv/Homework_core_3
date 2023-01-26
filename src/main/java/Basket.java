@@ -45,15 +45,6 @@ public class Basket {
         System.out.println("Итого: " + sumProducts + " руб");
     }
 
-    protected void saveTxt(File textFile) throws IOException {
-        try (PrintWriter out = new PrintWriter(textFile);) {
-            out.println(goods.length);
-            for (int i = 0; i < goods.length; i++) {
-                out.println(goods[i] + "\t" + prices[i] + "\t" + quantity[i]);
-            }
-        }
-    }
-
     public void saveJson(File file) throws IOException{
         try (PrintWriter out = new PrintWriter(file);){
             Gson gson = new Gson();
@@ -68,33 +59,5 @@ public class Basket {
             String json = bufferedReader.readLine();
             return gson.fromJson(json, Basket.class);
         }
-    }
-
-    public static Basket loadFromTxtFile(File textFile) throws IOException {
-        String[] goods = null;
-        int[] prices = null;
-        int[] quantity = null;
-
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(textFile));) {
-            int size = Integer.parseInt(bufferedReader.readLine());
-            goods = new String[size];
-            prices = new int[size];
-            quantity = new int[size];
-
-            for (int i = 0; i < size; i++) {
-                String line = bufferedReader.readLine();
-                String[] parts = line.split("\t");
-                goods[i] = parts[0];
-                prices[i] = Integer.parseInt(parts[1]);
-                quantity[i] = Integer.parseInt(parts[2]);
-            }
-        }
-
-        Basket basket = new Basket();
-        basket.goods = goods;
-        basket.prices = prices;
-        basket.quantity = quantity;
-
-        return basket;
     }
 }

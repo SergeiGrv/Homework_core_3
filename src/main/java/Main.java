@@ -1,9 +1,11 @@
+import org.json.simple.parser.ParseException;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ParseException {
         Scanner scanner = new Scanner(System.in);
 
         String[] products = {"Молоко", "Хлеб", "Гречка"};
@@ -15,14 +17,14 @@ public class Main {
             System.out.println(products[i] + " " + prices[i] + " руб/шт");
         }
 
-        File textFile = new File("basket.txt");
+        File file = new File("basket.json");
 
         Basket basket = new Basket(prices, products);
 
         ClientLog clientLog = new ClientLog();
 
-        if (textFile.exists()) {
-            basket = Basket.loadFromTxtFile(new File("basket.txt"));
+        if (file.exists()) {
+            basket = Basket.loadFromJson(new File("basket.json"));
         }
 
         while (true) {
@@ -40,9 +42,8 @@ public class Main {
             productCount = Integer.parseInt(parts[1]);
             basket.addToCart(productNumber, productCount);
 
-            basket.saveTxt(textFile);
-            clientLog.exportAsCSV(textFile);
-
+            basket.saveJson(file);
+            clientLog.exportAsCSV(file);
         }
 
     }
