@@ -23,14 +23,11 @@ public class Basket {
     protected Basket() {
     }
 
-    ClientLog clientLog = new ClientLog();
-
     protected void addToCart(int productNum, int amount) {
         quantity[productNum] = amount;
         int currentPrice = prices[productNum] * quantity[productNum];
         totalPrice[productNum] = currentPrice;
         sumProducts = sumProducts + currentPrice;
-        clientLog.log(productNum,amount);
         System.out.println("Вы добавили " + goods[productNum] + " в кол-ве " + amount + " штук(и). Итоговая цена: " + totalPrice[productNum]);
     }
 

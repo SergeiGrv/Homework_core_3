@@ -19,8 +19,9 @@ public class Main {
 
         File file = new File("basket.json");
 
-        Basket basket = new Basket(prices, products);
+        File txtFile = new File("log.csv");
 
+        Basket basket = new Basket(prices, products);
         ClientLog clientLog = new ClientLog();
 
         if (file.exists()) {
@@ -34,6 +35,7 @@ public class Main {
             String input = scanner.nextLine();
             if ("end".equals(input)) {
                 basket.printCart();
+                clientLog.exportAsCSV(txtFile);
                 break;
             }
 
@@ -41,9 +43,9 @@ public class Main {
             productNumber = Integer.parseInt(parts[0]) - 1;
             productCount = Integer.parseInt(parts[1]);
             basket.addToCart(productNumber, productCount);
+            clientLog.log(productNumber,productCount);
 
             basket.saveJson(file);
-            clientLog.exportAsCSV(file);
         }
 
     }
