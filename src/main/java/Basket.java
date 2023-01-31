@@ -43,7 +43,7 @@ public class Basket {
     }
 
     public void saveJson(File file) throws IOException{
-        try (PrintWriter out = new PrintWriter(file);){
+        try (PrintWriter out = new PrintWriter(file)){
             Gson gson = new Gson();
             String json = gson.toJson(this);
             out.println(json);
@@ -51,10 +51,47 @@ public class Basket {
     }
 
     public static Basket loadFromJson(File file) throws IOException{
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file));){
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))){
             Gson gson = new Gson();
             String json = bufferedReader.readLine();
             return gson.fromJson(json, Basket.class);
         }
+    }
+
+    protected void saveTxt(File textFile) throws IOException {
+        try (PrintWriter out = new PrintWriter(textFile)) {
+            out.println(goods.length);
+            for (int i = 0; i < goods.length; i++) {
+                out.println(goods[i] + "\t" + prices[i] + "\t" + quantity[i]);
+            }
+        }
+    }
+
+    public static Basket loadFromTxtFile(File textFile) throws IOException {
+        String[] goods;
+        int[] prices;
+        int[] quantity;
+
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(textFile))) {
+            int size = Integer.parseInt(bufferedReader.readLine());
+            goods = new String[size];
+            prices = new int[size];
+            quantity = new int[size];
+
+            for (int i = 0; i < size; i++) {
+                String line = bufferedReader.readLine();
+                String[] parts = line.split("\t");
+                goods[i] = parts[0];
+                prices[i] = Integer.parseInt(parts[1]);
+                quantity[i] = Integer.parseInt(parts[2]);
+            }
+        }
+
+        Basket basket = new Basket();
+        basket.goods = goods;
+        basket.prices = prices;
+        basket.quantity = quantity;
+
+        return basket;
     }
 }

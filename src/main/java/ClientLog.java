@@ -2,13 +2,11 @@ import com.opencsv.CSVWriter;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 
 
 public class ClientLog {
 
-    ArrayList<String> operations = new ArrayList<>();
+    protected ArrayList<String> operations = new ArrayList<>();
 
     protected void log(int productNum, int amount) {
        String productNumStr = String.valueOf(productNum);

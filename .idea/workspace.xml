@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b32ab6d8-2839-48ea-ae2e-74861af99694" name="Changes" comment="Second commit">
+      <change afterPath="$PROJECT_DIR$/log.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shop.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Homework 3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Homework 3.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/basket.json" beforeDir="false" afterPath="$PROJECT_DIR$/basket.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/log.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Basket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Basket.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ClientLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ClientLog.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
